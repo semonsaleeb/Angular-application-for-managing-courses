@@ -1,53 +1,116 @@
 <mat-card class="course-card">
   <mat-card-header>
-    <mat-card-title>Add New Course</mat-card-title>
+    <mat-card-title>Edit Course</mat-card-title>
   </mat-card-header>
 
   <mat-card-content>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
       <div class="form-grid">
+
+        <!-- Course Name -->
         <mat-form-field appearance="outline">
           <mat-label>Course Name</mat-label>
           <input matInput formControlName="courseName" />
+
+          <mat-error *ngIf="f['courseName'].hasError('required')">
+            Course Name is required
+          </mat-error>
+
+          <mat-error *ngIf="f['courseName'].hasError('minlength')">
+            Course Name must be at least 3 characters
+          </mat-error>
         </mat-form-field>
 
+        <!-- Instructor -->
         <mat-form-field appearance="outline">
           <mat-label>Instructor Name</mat-label>
           <input matInput formControlName="instructorName" />
+
+          <mat-error *ngIf="f['instructorName'].hasError('required')">
+            Instructor Name is required
+          </mat-error>
+
+          <mat-error *ngIf="f['instructorName'].hasError('minlength')">
+            Instructor Name must be at least 3 characters
+          </mat-error>
         </mat-form-field>
 
+        <!-- Category -->
         <mat-form-field appearance="outline">
           <mat-label>Category</mat-label>
           <input matInput formControlName="category" />
+
+          <mat-error *ngIf="f['category'].hasError('required')">
+            Category is required
+          </mat-error>
         </mat-form-field>
 
+        <!-- Duration -->
         <mat-form-field appearance="outline">
           <mat-label>Duration (Hours)</mat-label>
           <input matInput type="number" formControlName="duration" />
+
+          <mat-error *ngIf="f['duration'].hasError('required')">
+            Duration is required
+          </mat-error>
+
+          <mat-error *ngIf="f['duration'].hasError('min')">
+            Duration must be greater than 0
+          </mat-error>
         </mat-form-field>
 
+        <!-- Price -->
         <mat-form-field appearance="outline">
           <mat-label>Price</mat-label>
           <input matInput type="number" formControlName="price" />
+
+          <mat-error *ngIf="f['price'].hasError('required')">
+            Price is required
+          </mat-error>
+
+          <mat-error *ngIf="f['price'].hasError('min')">
+            Price cannot be negative
+          </mat-error>
         </mat-form-field>
 
+        <!-- Status -->
         <mat-form-field appearance="outline">
           <mat-label>Status</mat-label>
+
           <mat-select formControlName="status">
             <mat-option value="Active">Active</mat-option>
             <mat-option value="Draft">Draft</mat-option>
             <mat-option value="Archived">Archived</mat-option>
           </mat-select>
+
+          <mat-error *ngIf="f['status'].hasError('required')">
+            Status is required
+          </mat-error>
         </mat-form-field>
 
+        <!-- Created Date -->
         <mat-form-field appearance="outline">
           <mat-label>Created Date</mat-label>
-          <input matInput [matDatepicker]="picker" formControlName="createdDate" />
 
-          <mat-datepicker-toggle matIconSuffix [for]="picker"> </mat-datepicker-toggle>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            formControlName="createdDate"
+          />
+
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker">
+          </mat-datepicker-toggle>
 
           <mat-datepicker #picker></mat-datepicker>
+
+          <mat-error *ngIf="f['createdDate'].hasError('required')">
+            Created Date is required
+          </mat-error>
         </mat-form-field>
+
       </div>
 
       <div class="upload-section">
@@ -56,17 +119,32 @@
           Upload Course Image
         </label>
 
-        <input type="file" accept="image/*" (change)="onFileSelected($event)" />
+        <input
+          type="file"
+          accept="image/*"
+          (change)="onFileSelected($event)"
+        />
       </div>
 
       @if (selectedImage) {
         <div class="preview-container">
-          <img [src]="selectedImage" alt="Course Preview" class="preview-image" />
+          <img
+            [src]="selectedImage"
+            alt="Course Preview"
+            class="preview-image"
+          />
         </div>
       }
+
       <div class="actions">
-        <button mat-raised-button color="primary" type="submit">Update Course</button>
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit">
+          Update Course
+        </button>
       </div>
+
     </form>
   </mat-card-content>
 </mat-card>

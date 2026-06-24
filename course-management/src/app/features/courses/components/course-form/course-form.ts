@@ -1,9 +1,15 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 import { CourseService } from '../../../../core/services/course.service';
+
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
@@ -16,24 +22,24 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 @Component({
   selector: 'app-course-form',
   standalone: true,
-imports: [
-  CommonModule,
-  ReactiveFormsModule,
-  MatCardModule,
-  MatFormFieldModule,
-  MatInputModule,
-  MatSelectModule,
-  MatButtonModule,
-  MatDatepickerModule,
-  MatNativeDateModule,
-  MatIconModule
-] , templateUrl: './course-form.html',
-  styleUrl: './course-form.scss',
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatIconModule
+  ],
+  templateUrl: './course-form.html',
+  styleUrl: './course-form.scss'
 })
 export class CourseForm {
-selectedImage = '';
-  selectedFile: File | null = null;
 
+  selectedImage = '';
   form: FormGroup;
 
   constructor(
@@ -41,51 +47,92 @@ selectedImage = '';
     private courseService: CourseService,
     private router: Router
   ) {
-   this.form = this.fb.group({
-  courseName: [''],
-  instructorName: [''],
-  category: [''],
-  duration: [0],
-  price: [0],
-  status: ['Active'],
-  createdDate: [''],
-  image: ['']
-});
-  }
 
-onSubmit(): void {
-  console.log(this.form.value);
+    this.form = this.fb.group({
+      courseName: [
+        '',
+        [Validators.required, Validators.minLength(3)]
+      ],
 
-  this.courseService.addCourse(this.form.value).subscribe({
-    next: () => {
-      this.router.navigate(['/courses']);
-    },
-    error: (err) => {
-      console.error(err);
-    }
-  });
-}
+      instructorName: [
+        '',
+        [Validators.required, Validators.minLength(3)]
+      ],
 
+      category: [
+        '',
+        Validators.required
+      ],
 
-onFileSelected(event: Event): void {
-  const input = event.target as HTMLInputElement;
+      duration: [
+        null,
+        [Validators.required, Validators.min(1)]
+      ],
 
-  if (input.files && input.files.length > 0) {
-    const file = input.files[0];
+      price: [
+        null,
+        [Validators.required, Validators.min(0)]
+      ],
 
-    // حفظ اسم الصورة فقط
-    this.form.patchValue({
-      image: "/images/"+file.name
+      status: [
+        'Active',
+        Validators.required
+      ],
+
+      createdDate: [
+        '',
+        Validators.required
+      ],
+
+      image: [
+        '',
+        Validators.required
+      ]
     });
-
-    // معاينة الصورة
-    const reader = new FileReader();
-
-    reader.onload = () => {
-      this.selectedImage = reader.result as string;
-    };
-
-    reader.readAsDataURL(file);
   }
-}
+
+  get f() {
+    return this.form.controls;
+  }
+
+  onSubmit(): void {
+
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+
+    this.courseService.addCourse(this.form.value).subscribe({
+      next: () => {
+        this.router.navigate(['/courses']);
+      },
+      error: (err) => {
+        console.error(err);
+      }
+    });
+  }
+
+  onFileSelected(event: Event): void {
+
+    const input = event.target as HTMLInputElement;
+
+    if (input.files && input.files.length > 0) {
+
+      const file = input.files[0];
+
+      this.form.patchValue({
+        image: '/images/' + file.name
+      });
+
+      this.form.get('image')?.updateValueAndValidity();
+
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        this.selectedImage = reader.result as string;
+      };
+
+      reader.readAsDataURL(file);
+    }
+  }
 }

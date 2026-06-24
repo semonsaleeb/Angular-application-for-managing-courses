@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators
+} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { CourseService } from '../../../../core/services/course.service';
@@ -48,18 +53,43 @@ export class CourseEdit implements OnInit {
     this.courseId = this.route.snapshot.paramMap.get('id')!;
 
     this.form = this.fb.group({
-      courseName: [''],
-      instructorName: [''],
-      category: [''],
-      duration: [0],
-      price: [0],
-      status: ['Active'],
-      createdDate: [''],
+      courseName: [
+        '',
+        [Validators.required, Validators.minLength(3)]
+      ],
+      instructorName: [
+        '',
+        [Validators.required, Validators.minLength(3)]
+      ],
+      category: [
+        '',
+        [Validators.required]
+      ],
+      duration: [
+        null,
+        [Validators.required, Validators.min(1)]
+      ],
+      price: [
+        null,
+        [Validators.required, Validators.min(0)]
+      ],
+      status: [
+        'Active',
+        [Validators.required]
+      ],
+      createdDate: [
+        '',
+        [Validators.required]
+      ],
       image: [''],
       imageUrl: ['']
     });
 
     this.loadCourse();
+  }
+
+  get f() {
+    return this.form.controls;
   }
 
   loadCourse(): void {
@@ -88,10 +118,14 @@ export class CourseEdit implements OnInit {
   }
 
   onSubmit(): void {
+
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+
     const body = {
       ...this.form.value,
-
-      // تأكيد تحديث الحقلين بنفس القيمة
       image: this.form.value.imageUrl,
       imageUrl: this.form.value.imageUrl
     };
