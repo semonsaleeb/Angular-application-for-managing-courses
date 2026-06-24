@@ -1,0 +1,26 @@
+<h2>Courses List</h2>
+
+<div class="container">
+  @for (course of courses; track course.id) {
+    <mat-card class="course-card">
+
+      <mat-card-title>
+        {{ course.courseName }}
+      </mat-card-title>
+
+      <mat-card-subtitle>
+        {{ course.instructorName }}
+      </mat-card-subtitle>
+
+      <mat-card-content>
+        <p><b>Category:</b> {{ course.category }}</p>
+        <p><b>Duration:</b> {{ course.duration }} hours</p>
+        <p><b>Price:</b> {{ course.price }} EGP</p>
+        <p><b>Status:</b> {{ course.status }}</p>
+        <p><b>Date:</b> {{ course.createdDate }}</p>
+      </mat-card-content>
+
+    </mat-card>
+  }
+</div>
+<h1>ddd</h1>

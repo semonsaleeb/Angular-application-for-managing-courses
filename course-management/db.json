@@ -1,0 +1,24 @@
+{
+  "courses": [
+    {
+      "id": 1,
+      "courseName": "Angular Fundamentals",
+      "instructorName": "Ahmed Ali",
+      "category": "Frontend",
+      "duration": 20,
+      "price": 1500,
+      "status": "Active",
+      "createdDate": "2026-06-01"
+    },
+    {
+      "id": 2,
+      "courseName": "React Basics",
+      "instructorName": "Sara Mohamed",
+      "category": "Frontend",
+      "duration": 18,
+      "price": 1200,
+      "status": "Draft",
+      "createdDate": "2026-06-10"
+    }
+  ]
+}
