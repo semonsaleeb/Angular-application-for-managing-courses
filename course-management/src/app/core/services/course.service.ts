@@ -16,4 +16,8 @@ export class CourseService {
   getCourses(): Observable<Course[]> {
     return this.http.get<Course[]>(this.apiUrl);
   }
+
+addCourse(formData: FormData) {
+  return this.http.post(this.apiUrl, formData);
+}
 }

@@ -1,9 +1,12 @@
-<h2>Courses List</h2>
+<button mat-raised-button color="primary" routerLink="/courses/add">
+  Add New Course
+</button>
 
 <div class="container">
   @for (course of courses; track course.id) {
     <mat-card class="course-card">
-
+      <img mat-card-image [src]="course.image" [alt]="course.courseName" />
+    <p>{{ course.image }}</p>
       <mat-card-title>
         {{ course.courseName }}
       </mat-card-title>
@@ -19,8 +22,6 @@
         <p><b>Status:</b> {{ course.status }}</p>
         <p><b>Date:</b> {{ course.createdDate }}</p>
       </mat-card-content>
-
     </mat-card>
   }
 </div>
-<h1>ddd</h1>

@@ -1,24 +1,93 @@
 {
   "courses": [
     {
-      "id": 1,
+      "id": "1",
       "courseName": "Angular Fundamentals",
       "instructorName": "Ahmed Ali",
       "category": "Frontend",
       "duration": 20,
       "price": 1500,
       "status": "Active",
-      "createdDate": "2026-06-01"
+      "createdDate": "2026-06-01",
+      "image": "/images/angular.jpg"
     },
     {
-      "id": 2,
+      "id": "2",
       "courseName": "React Basics",
       "instructorName": "Sara Mohamed",
       "category": "Frontend",
       "duration": 18,
       "price": 1200,
       "status": "Draft",
-      "createdDate": "2026-06-10"
+      "createdDate": "2026-06-10",
+      "image": "/images/react.png"
+    },
+    {
+      "courseName": "test",
+      "instructorName": "",
+      "category": "test",
+      "duration": 5,
+      "price": 1000,
+      "status": "Draft",
+      "createdDate": "2026-06-26",
+      "image": "/images/angular.jpg",
+      "id": "FzLZvgRg6Ko"
+    },
+    {
+      "courseName": "سسس",
+      "instructorName": "سسس",
+      "category": "سسس",
+      "duration": 33,
+      "price": 333,
+      "status": "Draft",
+      "createdDate": "2026-06-23",
+      "image": "/images/Slice 3.png",
+      "id": "XRPnpsKHiUQ"
+    },
+    {
+      "courseName": "ccc",
+      "instructorName": "ccc",
+      "category": "ccc",
+      "duration": 40,
+      "price": 4440,
+      "status": "Archived",
+      "createdDate": "2026-07-02",
+      "image": "/images/react.png",
+      "id": "0wXfczZfhpM"
+    },
+    {
+      "courseName": "vvv",
+      "instructorName": "vvv",
+      "category": "vvv",
+      "duration": 30,
+      "price": 3330,
+      "status": "Active",
+      "createdDate": "2026-06-04",
+      "image": "/images/angular.jpg",
+      "id": "Hbugw96Y9Mo"
+    },
+    {
+      "courseName": "cc",
+      "instructorName": "cc",
+      "category": "cc",
+      "duration": 20,
+      "price": 20,
+      "status": "Archived",
+      "createdDate": "2026-06-10T21:00:00.000Z",
+      "image": "/images/react.png",
+      "id": "u5vd8hekEAU"
+    },
+    {
+      "courseName": "zz",
+      "instructorName": "zzz",
+      "category": "zz",
+      "duration": 50,
+      "price": 8880,
+      "status": "Draft",
+      "createdDate": "2026-06-18T21:00:00.000Z",
+      "image": "/images/react.png",
+      "id": "F0mYY7SJHqs"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

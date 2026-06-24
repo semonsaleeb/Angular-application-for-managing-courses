@@ -7,4 +7,5 @@ export interface Course {
   price: number;
   status: string;
   createdDate: string;
+  image: string;
 }

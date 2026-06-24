@@ -1,1 +1,95 @@
-<p>course-form works!</p>
+
+<mat-card class="course-card">
+  <mat-card-header>
+    <mat-card-title>Add New Course</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+      <div class="form-grid">
+
+        <mat-form-field appearance="outline">
+          <mat-label>Course Name</mat-label>
+          <input matInput formControlName="courseName">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Instructor Name</mat-label>
+          <input matInput formControlName="instructorName">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Category</mat-label>
+          <input matInput formControlName="category">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Duration (Hours)</mat-label>
+          <input matInput type="number" formControlName="duration">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Price</mat-label>
+          <input matInput type="number" formControlName="price">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Status</mat-label>
+          <mat-select formControlName="status">
+            <mat-option value="Active">Active</mat-option>
+            <mat-option value="Draft">Draft</mat-option>
+            <mat-option value="Archived">Archived</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Created Date</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            formControlName="createdDate">
+
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker">
+          </mat-datepicker-toggle>
+
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+      </div>
+
+      <div class="upload-section">
+        <label class="upload-label">
+          <mat-icon>cloud_upload</mat-icon>
+          Upload Course Image
+        </label>
+
+        <input
+          type="file"
+          accept="image/*"
+          (change)="onFileSelected($event)">
+      </div>
+
+      @if (selectedImage) {
+        <div class="preview-container">
+          <img
+            [src]="selectedImage"
+            alt="Course Preview"
+            class="preview-image">
+        </div>
+      }
+
+      <div class="actions">
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit">
+          Save Course
+        </button>
+      </div>
+
+    </form>
+  </mat-card-content>
+</mat-card>
