@@ -1,1 +1,33 @@
-<p>sidebar works!</p>
+<div class="sidebar">
+  <h3>Course Status</h3>
+
+  <mat-nav-list>
+    <a
+      mat-list-item
+      [class.active]="selectedStatus === 'all'"
+      (click)="filterByStatus('all')">
+      All Courses
+    </a>
+
+    <a
+      mat-list-item
+      [class.active]="selectedStatus === 'active'"
+      (click)="filterByStatus('active')">
+      Active
+    </a>
+
+    <a
+      mat-list-item
+      [class.active]="selectedStatus === 'draft'"
+      (click)="filterByStatus('draft')">
+      Draft
+    </a>
+
+    <a
+      mat-list-item
+      [class.active]="selectedStatus === 'archived'"
+      (click)="filterByStatus('archived')">
+      Archived
+    </a>
+  </mat-nav-list>
+</div>
