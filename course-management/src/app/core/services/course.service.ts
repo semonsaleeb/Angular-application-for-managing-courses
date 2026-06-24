@@ -25,12 +25,12 @@ export class CourseService {
     return this.http.post(this.apiUrl, formData);
   }
 
-  updateCourse(id: string, formData: FormData) {
-    return this.http.put(
-      `${this.apiUrl}/${id}`,
-      formData
-    );
-  }
+ updateCourse(id: string, body: any) {
+  return this.http.patch(
+    `${this.apiUrl}/${id}`,
+    body
+  );
+}
 
   deleteCourse(id: string) {
     return this.http.delete(

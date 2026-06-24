@@ -1,0 +1,52 @@
+.details-card {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 30px;
+
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 24px;
+}
+
+.image-container {
+  flex: 0 0 320px;
+}
+
+.course-image {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.course-info {
+  flex: 1;
+}
+
+.course-info h1 {
+  margin-bottom: 20px;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.info-row {
+  margin-bottom: 14px;
+  font-size: 16px;
+}
+
+.info-row strong {
+  display: inline-block;
+  min-width: 120px;
+}
+
+@media (max-width: 768px) {
+  .details-card {
+    flex-direction: column;
+  }
+
+  .image-container {
+    width: 100%;
+    flex: unset;
+  }
+}

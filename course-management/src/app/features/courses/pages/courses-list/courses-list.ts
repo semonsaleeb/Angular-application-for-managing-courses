@@ -11,28 +11,20 @@ import { MatButtonModule } from '@angular/material/button';
 @Component({
   selector: 'app-courses-list',
   standalone: true,
-  imports: [
-    CommonModule,
-    RouterModule,
-    CourseCard,
-     MatButtonModule,
-  MatIconModule
-  ],
+  imports: [CommonModule, RouterModule, CourseCard, MatButtonModule, MatIconModule],
   templateUrl: './courses-list.html',
-  styleUrls: ['./courses-list.scss']
+  styleUrls: ['./courses-list.scss'],
 })
 export class CoursesList implements OnInit {
-
   courses: Course[] = [];
 
-constructor(
-  private courseService: CourseService,
-  private cdr: ChangeDetectorRef,
-  private router: Router
-) {}
+  constructor(
+    private courseService: CourseService,
+    private cdr: ChangeDetectorRef,
+    private router: Router,
+  ) {}
 
   ngOnInit(): void {
-    
     this.courseService.getCourses().subscribe({
       next: (res) => {
         this.courses = res;
@@ -42,24 +34,27 @@ constructor(
       },
       error: (err) => {
         console.error(err);
-      }
+      },
     });
   }
 
   onEditCourse(course: Course) {
-  this.router.navigate(['/courses/edit', course.id]);
-}
+    this.router.navigate(['/courses/edit', course.id]);
+  }
+  onDetailsCourse(course: Course) {
+    this.router.navigate(['/courses/details', course.id]);
+  }
 
-onDeleteCourse(id: string) {
-  if (!confirm('Are you sure?')) return;
+  onDeleteCourse(id: string) {
+    if (!confirm('Are you sure?')) return;
 
-  this.courseService.deleteCourse(id).subscribe({
-    next: () => {
-      window.location.reload();
-    },
-    error: (err) => {
-      console.error('Delete error:', err);
-    }
-  });
-}
+    this.courseService.deleteCourse(id).subscribe({
+      next: () => {
+        window.location.reload();
+      },
+      error: (err) => {
+        console.error('Delete error:', err);
+      },
+    });
+  }
 }

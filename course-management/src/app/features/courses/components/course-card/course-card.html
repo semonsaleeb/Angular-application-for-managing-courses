@@ -23,9 +23,23 @@
       <strong>Duration:</strong>
       {{ course.duration }} Hours
     </p>
+
+       <p>
+      <strong>Status:</strong>
+      {{ course.status }} 
+    </p>
   </mat-card-content>
 
    <mat-card-actions align="end">
+
+    <button
+  mat-raised-button
+  color="accent"
+  (click)="onDetails()">
+  <mat-icon>visibility</mat-icon>
+  Details
+</button>
+
 
     <button
       mat-raised-button
@@ -42,6 +56,7 @@
       <mat-icon>delete</mat-icon>
       Delete
     </button>
+
 
   </mat-card-actions>
 
