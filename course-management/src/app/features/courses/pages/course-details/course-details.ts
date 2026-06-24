@@ -5,13 +5,14 @@ import {
 } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 
 import { CourseService } from '../../../../core/services/course.service';
 import { Course } from '../../models/course.model';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-course-details',
@@ -19,7 +20,10 @@ import { MatIconModule } from '@angular/material/icon';
   imports: [
     CommonModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+      RouterLink,
+  MatButtonModule,
+  MatIconModule
   ],
   templateUrl: './course-details.html',
   styleUrl: './course-details.scss',

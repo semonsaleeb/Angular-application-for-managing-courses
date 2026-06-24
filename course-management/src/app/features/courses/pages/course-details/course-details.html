@@ -1,4 +1,4 @@
-@if (course) {
+<!-- @if (course) {
 
 <mat-card class="details-card">
 
@@ -14,6 +14,72 @@
     <h1>{{ course.courseName }}</h1>
 
 
+
+    <div class="info-row">
+      <strong>Instructor:</strong>
+      <span>{{ course.instructorName }}</span>
+    </div>
+
+    <div class="info-row">
+      <strong>Category:</strong>
+      <span>{{ course.category }}</span>
+    </div>
+
+    <div class="info-row">
+      <strong>Duration:</strong>
+      <span>{{ course.duration }} Hours</span>
+    </div>
+
+    <div class="info-row">
+      <strong>Price:</strong>
+      <span>{{ course.price }} EGP</span>
+    </div>
+
+    <div class="info-row">
+      <strong>Status:</strong>
+      <span>{{ course.status }}</span>
+    </div>
+
+    <div class="info-row">
+      <strong>Created Date:</strong>
+      <span>
+        {{ course.createdDate | date:'dd/MM/yyyy' }}
+      </span>
+    </div>
+
+  </div>
+
+</mat-card>
+
+} -->
+@if (course) {
+
+<div class="back-btn">
+ <div class="page-header">
+  <button
+    mat-icon-button
+    color="primary"
+    routerLink="/courses">
+
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+
+  <!-- <span class="page-title"> Back to Courses</span> -->
+</div>
+</div>
+
+<mat-card class="details-card">
+
+  <div class="image-container">
+    <img
+      [src]="course.image"
+      [alt]="course.courseName"
+      class="course-image">
+  </div>
+
+  <div class="course-info">
+
+    <h1>{{ course.courseName }}</h1>
 
     <div class="info-row">
       <strong>Instructor:</strong>
