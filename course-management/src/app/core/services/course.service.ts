@@ -17,7 +17,24 @@ export class CourseService {
     return this.http.get<Course[]>(this.apiUrl);
   }
 
-addCourse(formData: FormData) {
-  return this.http.post(this.apiUrl, formData);
-}
+  getCourseById(id: string): Observable<Course> {
+    return this.http.get<Course>(`${this.apiUrl}/${id}`);
+  }
+
+  addCourse(formData: FormData) {
+    return this.http.post(this.apiUrl, formData);
+  }
+
+  updateCourse(id: string, formData: FormData) {
+    return this.http.put(
+      `${this.apiUrl}/${id}`,
+      formData
+    );
+  }
+
+  deleteCourse(id: string) {
+    return this.http.delete(
+      `${this.apiUrl}/${id}`
+    );
+  }
 }

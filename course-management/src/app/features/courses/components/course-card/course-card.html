@@ -1,1 +1,48 @@
-<p>course-card works!</p>
+<mat-card class="course-card">
+     <img mat-card-image [src]="course.image" [alt]="course.courseName" />
+  <mat-card-header>
+      
+     
+    <mat-card-title>
+      {{ course.courseName }}
+    </mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <p>
+      <strong>Instructor:</strong>
+      {{ course.instructorName }}
+    </p>
+
+    <p>
+      <strong>Category:</strong>
+      {{ course.category }}
+    </p>
+
+    <p>
+      <strong>Duration:</strong>
+      {{ course.duration }} Hours
+    </p>
+  </mat-card-content>
+
+   <mat-card-actions align="end">
+
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="onEdit()">
+      <mat-icon>edit</mat-icon>
+      Edit
+    </button>
+
+    <button
+      mat-raised-button
+      color="warn"
+      (click)="onDelete()">
+      <mat-icon>delete</mat-icon>
+      Delete
+    </button>
+
+  </mat-card-actions>
+
+</mat-card>

@@ -1,27 +1,19 @@
-<button mat-raised-button color="primary" routerLink="/courses/add">
-  Add New Course
-</button>
+<div class="actions">
+  <button
+    mat-raised-button
+    color="primary"
+    routerLink="/courses/add">
+    <mat-icon>add</mat-icon>
+    Add New Course
+  </button>
+</div>
 
 <div class="container">
   @for (course of courses; track course.id) {
-    <mat-card class="course-card">
-      <img mat-card-image [src]="course.image" [alt]="course.courseName" />
-    <p>{{ course.image }}</p>
-      <mat-card-title>
-        {{ course.courseName }}
-      </mat-card-title>
-
-      <mat-card-subtitle>
-        {{ course.instructorName }}
-      </mat-card-subtitle>
-
-      <mat-card-content>
-        <p><b>Category:</b> {{ course.category }}</p>
-        <p><b>Duration:</b> {{ course.duration }} hours</p>
-        <p><b>Price:</b> {{ course.price }} EGP</p>
-        <p><b>Status:</b> {{ course.status }}</p>
-        <p><b>Date:</b> {{ course.createdDate }}</p>
-      </mat-card-content>
-    </mat-card>
+    <app-course-card
+      [course]="course"
+      (edit)="onEditCourse($event)"
+      (delete)="onDeleteCourse($event)">
+    </app-course-card>
   }
 </div>
